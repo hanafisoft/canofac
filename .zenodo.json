@@ -1,0 +1,29 @@
+{
+  "upload_type": "software",
+  "title": "canofac: Canonical Factorisation for Multiblock Data (R and Python)",
+  "description": "<p>Exploratory multiblock methods written in the canonical factorisation X_k = U D_k V_k' (Bougeard et al., 2024): a family of criteria indexed by a power q applied to the pseudo-singular values (MAXBET, CPCA, MCOA, CCSWA/ComDim/ACCPS, INDORT, STATIS, multiple factor analysis), trajectories of the blocks as q varies, and an exact leave-one-block-out (LOBO) permutation test with exact permutation moments and a gamma approximation. R package and Python package with the same functions, labels (English and French) and random number generator.</p>",
+  "creators": [
+    {
+      "name": "Hanafi, Mohamed",
+      "affiliation": "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, France"
+    }
+  ],
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "multiblock analysis",
+    "canonical factorisation",
+    "pseudo-singular values",
+    "dimension reduction",
+    "permutation test",
+    "R",
+    "Python"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/hanafisoft/canofac",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "language": "eng"
+}

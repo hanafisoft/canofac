@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use canofac, please cite it as below, and cite Bougeard et al. (2024)."
+type: software
+title: "canofac: Canonical Factorisation for Multiblock Data"
+version: 0.7.0
+date-released: 2026-11-25
+license: GPL-3.0-or-later
+repository-code: "https://github.com/hanafisoft/canofac"
+authors:
+  - family-names: Hanafi
+    given-names: Mohamed
+    email: mohamed.hanafi@oniris-nantes.fr
+    affiliation: "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, France"
+keywords:
+  - multiblock analysis
+  - canonical factorisation
+  - pseudo-singular values
+  - permutation test
+references:
+  - type: article
+    title: "Benchmarking multiblock methods with canonical factorization"
+    authors:
+      - family-names: Bougeard
+        given-names: S.
+      - family-names: Peltier
+        given-names: C.
+      - family-names: Jaillais
+        given-names: B.
+      - family-names: Boulet
+        given-names: J.-C.
+      - family-names: Hanafi
+        given-names: M.
+    journal: "Chemometrics and Intelligent Laboratory Systems"
+    volume: 254
+    start: 105240
+    year: 2024

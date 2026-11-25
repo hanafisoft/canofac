@@ -1,0 +1,111 @@
+---
+title: "Prise en main de canofac"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Prise en main de canofac (français)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+has_ade4 <- requireNamespace("ade4", quietly = TRUE)
+```
+
+```{r}
+library(canofac)
+cf_lang("fr")     # sorties et graphiques en français
+```
+
+canofac réunit le code de deux articles : les **pseudo-valeurs singulières** et la famille de critères en
+puissance q (article A), et le **test de permutation LOBO** (article BB). L'aide en français s'obtient par
+`cf_help(sujet, "fr")`, par exemple `cf_help("cf_test", "fr")` ; `cf_help("topics")` liste les sujets.
+Une version Python du package donne les mêmes résultats, et, avec la même graine, les mêmes p-values.
+
+## Données et prétraitement
+
+Les données de Friday (1987, package **ade4**) décrivent 16 étangs par l'abondance de 91 espèces réparties en
+10 blocs (groupes taxonomiques). Chaque bloc est centré par colonne et ramené à une inertie totale de 1.
+
+```{r, eval = has_ade4}
+blocks <- cf_friday()
+sapply(blocks, ncol)
+```
+
+## La famille en q
+
+Avec des axes sans contrainte, `q = 2` donne la CPCA ; `q = 4` donne INDORT en extraction simultanée et
+l'ACCPS (ComDim) en extraction séquentielle.
+
+```{r, eval = has_ade4}
+fit2 <- canofac(blocks, R = 2, q = 2)
+fit4 <- canofac(blocks, R = 2, q = 4)
+fit4
+```
+
+Les saliences `fit4$saliences` sont les parts de l'inertie de chaque bloc portées par chaque composante de
+référence.
+
+## Trajectoires, multimodalité, comparaison des méthodes
+
+```{r, eval = has_ade4, fig.width = 6, fig.height = 6}
+tr <- cf_trajectories(blocks, R = 2, qgrid = c(1, 1.5, 1.9, 2, 2.1, 3, 4, 6, 8, 10))
+plot(tr)
+```
+
+```{r, eval = has_ade4}
+cf_multistart(blocks, R = 2, q = 10, nstart = 50)     # plusieurs optima pour q grand
+cf_compare(list(CPCA = fit2, INDORT = fit4))
+cf_angles(fit4, canofac(blocks, R = 2, q = 4, extraction = "sequential"))   # INDORT contre ACCPS
+```
+
+## Test LOBO
+
+Pour chaque bloc k : (1) on retire le bloc et on estime les composantes de référence des autres blocs,
+`U^(-k)`, qui restent fixées ; (2) on mesure le lien entre le bloc et ces composantes ; (3) on permute les
+lignes du bloc ; (4) on compare. Par défaut, la statistique du sous-espace est le **RV restreint**, qui pondère
+chaque composante par l'inertie des autres blocs. **Tous les blocs** sont liés si max_k p_k ≤ alpha ; sinon,
+les blocs liés sont ceux dont la p-value ajustée par Holm est ≤ alpha.
+
+```{r, eval = has_ade4}
+test <- cf_test(blocks, R = 2, q = 2, B = 199, seed = 1)
+test
+plot(test)
+plot(test, type = "null")
+```
+
+Options utiles :
+
+- `pvalue = "hybrid"` : approximation gamma (moyenne et variance exactes de permutation) et permutation
+  seulement près des seuils ; `pvalue = "gamma"` : sans permutation, légèrement libérale ;
+- `scheme = "groups"`, `groups = ...` : permutation de groupes entiers (réplicats) ;
+- `compare = TRUE` : RV complet et PROTEST, à titre de comparaison ;
+- `weighting = "statis"` ou `"mfa"` : composantes de STATIS ou de l'AFM.
+
+```{r, eval = has_ade4}
+cf_test(blocks, R = 2, q = 2, B = 199, seed = 1, pvalue = "hybrid", compare = TRUE)
+```
+
+## Choix du nombre de dimensions (expérimental)
+
+`cf_test_path()` est **expérimentale** : le choix de R ne fait pas partie des articles publiés, et les
+p-values du modèle retenu sont optimistes. Un avertissement est émis à chaque appel.
+
+```{r, eval = FALSE}
+pth <- cf_test_path(blocks, q = 2, B = 199, seed = 1)
+pth
+plot(pth)
+```
+
+## Reproduire les articles
+
+Les scripts `articleA.R` et `articleBB.R` reproduisent les tableaux et figures des deux articles :
+
+```{r, eval = FALSE}
+source(system.file("scripts", "articleA.R", package = "canofac"))
+source(system.file("scripts", "articleBB.R", package = "canofac"))
+```
+
+```{r, include = FALSE}
+cf_lang("en")
+```

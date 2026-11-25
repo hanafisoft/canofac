@@ -1,0 +1,34 @@
+# Python package: tests (pytest) and static checks of the R code, at each push and pull request.
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: python
+
+permissions: read-all
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Static checks of the R code
+        run: python tools/verifier_R_statique.py
+      - name: Install the Python package
+        run: |
+          cd python
+          python sync_shared.py
+          pip install ".[test]"
+      - name: Tests
+        run: |
+          cd python
+          pytest -q tests

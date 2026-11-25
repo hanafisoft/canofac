@@ -1,0 +1,45 @@
+Package: canofac
+Type: Package
+Title: Canonical Factorisation for Multiblock Data
+Version: 0.7.0
+Authors@R: c(
+    person("Mohamed", "Hanafi", email = "mohamed.hanafi@oniris-nantes.fr",
+           role = c("aut", "cre")))
+Description: Exploratory multiblock methods written in the canonical
+    factorisation X_k = U D_k V_k' (Bougeard et al., 2024), where U holds
+    the reference components (scores), shared by all blocks, V_k the axes
+    (loadings) of block k and D_k a diagonal matrix of pseudo-singular values.
+    The package estimates a family of criteria indexed by a power q applied to
+    the pseudo-singular values, which includes MAXBET (q = 1), CPCA and MCOA
+    (q = 2), CCSWA/ComDim/ACCPS and INDORT (q = 4), with unconstrained or
+    orthonormal axes and sequential or simultaneous extraction, and STATIS
+    and multiple factor analysis through the weighting of the blocks. It provides
+    the trajectories of each block as q varies, an exact leave-one-block-out (LOBO)
+    permutation test, block by block, that designates the blocks linked to the reference
+    components estimated on the other blocks, with a subspace statistic that
+    weights the components by the inertia of the other blocks (restricted RV)
+    or equally,
+    p-values by permutation, by a gamma approximation with the exact permutation
+    moments or by a hybrid of both, schemes for groups of exchangeable rows,
+    comparisons with the full RV test and PROTEST, and a set of plots whose
+    labels, like the help (cf_help()), are available in English and in French.
+    A Python version with the same functions, labels and random number generator
+    (same permutations, hence same p-values, for the same seed) is in the
+    directory python/ of the source repository.
+License: GPL-3
+URL: https://github.com/hanafisoft/canofac
+BugReports: https://github.com/hanafisoft/canofac/issues
+Encoding: UTF-8
+Depends: R (>= 4.0.0)
+Imports: graphics, grDevices, stats, utils
+Suggests:
+    ade4,
+    mixOmics,
+    multiblock,
+    jsonlite,
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+RoxygenNote: 7.2.3

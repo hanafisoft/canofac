@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "canofac"
+version = "0.7.0"
+description = "Canonical factorisation for multiblock data: power-q family of criteria on pseudo-singular values and leave-one-block-out (LOBO) permutation test"
+readme = "README.md"
+license = {text = "GPL-3.0-or-later"}
+authors = [{name = "Mohamed Hanafi", email = "mohamed.hanafi@oniris-nantes.fr"}]
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.22", "scipy>=1.8", "pandas>=1.4", "matplotlib>=3.6"]
+classifiers = ["Programming Language :: Python :: 3", "Topic :: Scientific/Engineering :: Mathematics"]
+
+[project.urls]
+Homepage = "https://github.com/hanafisoft/canofac"
+Issues = "https://github.com/hanafisoft/canofac/issues"
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools]
+packages = ["canofac"]
+
+[tool.setuptools.package-data]
+canofac = ["shared/*.csv", "shared/aide/fr/*.md", "shared/reference/*.json"]

@@ -1,0 +1,9 @@
+^\.Rbuildignore$
+^\.github$
+^\.gitignore$
+^.*\.Rproj$
+^\.Rproj\.user$
+^python$
+^tools$
+^\.zenodo\.json$
+^CITATION\.cff$

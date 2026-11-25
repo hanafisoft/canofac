@@ -1,0 +1,27 @@
+bibentry(
+  bibtype = "Manual",
+  title = "canofac: Canonical Factorisation for Multiblock Data",
+  author = person("Mohamed", "Hanafi"),
+  year = "2026",
+  note = paste("R package version", meta$Version),
+  url = "https://github.com/hanafisoft/canofac",
+  textVersion = paste0(
+    "Hanafi M. (2026). canofac: Canonical Factorisation for Multiblock Data. ",
+    "R package version ", meta$Version, ". https://github.com/hanafisoft/canofac")
+)
+
+bibentry(
+  bibtype = "Article",
+  title = "Benchmarking multiblock methods with canonical factorization",
+  author = c(person("S.", "Bougeard"), person("C.", "Peltier"),
+             person("B.", "Jaillais"), person("J.-C.", "Boulet"),
+             person("M.", "Hanafi")),
+  journal = "Chemometrics and Intelligent Laboratory Systems",
+  volume = "254",
+  pages = "105240",
+  year = "2024",
+  textVersion = paste(
+    "Bougeard S., Peltier C., Jaillais B., Boulet J.-C., Hanafi M. (2024).",
+    "Benchmarking multiblock methods with canonical factorization.",
+    "Chemometrics and Intelligent Laboratory Systems, 254, 105240.")
+)

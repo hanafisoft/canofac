@@ -1,0 +1,78 @@
+key,en,fr
+title_fit,"Canonical factorisation, q-family","Factorisation canonique, famille en q"
+settings_fit,"  q = %g, axes = %s, extraction = %s, R = %d, K = %d blocks\n","  q = %g, axes = %s, extraction = %s, R = %d, K = %d blocs\n"
+criterion,  criterion sum |d|^q = %s\n\n,  critère somme |d|^q = %s\n\n
+pvs_head,Pseudo-singular values d_kh:,Pseudo-valeurs singulières d_kh :
+sal_head,Saliences d_kh^2 (share of the block inertia with unit total inertia):,"Saliences d_kh^2 (part de l'inertie du bloc, inertie totale unité) :"
+delta_head,Normalised values delta_kh = d_kh / sigma_1(X_k):,Valeurs normalisées delta_kh = d_kh / sigma_1(X_k) :
+title_test,Permutation test of the links between each block and the reference components,Test par permutation des liens entre chaque bloc et les composantes de référence
+settings_test,"  q = %g, axes = %s, extraction = %s, scheme = %s, B = %d, alpha = %g\n","  q = %g, axes = %s, extraction = %s, schéma = %s, B = %d, alpha = %g\n"
+pval_head,p-values (%):,p-values (%) :
+psub_head,Subspace p-values (%):,p-values du sous-espace (%) :
+struct_head,Blocks linked to each dimension (Holm-adjusted p <= alpha):,Blocs liés à chaque dimension (p-value ajustée par Holm <= alpha) :
+all_line,All blocks linked (max_k p <= alpha):             ,Tous les blocs liés (max_k p <= alpha) :           
+retained_line,Retained (at least one linked block):             ,Retenue (au moins un bloc lié) :                  
+stat_fixed,"  LOBO statistic (leave-one-block-out): components of the other blocks, not re-estimated","  statistique LOBO (leave-one-block-out) : composantes des autres blocs, non réestimées"
+stat_refit,  re-estimation statistic: whole model re-estimated on each permuted data set,  statistique de réestimation : modèle réestimé sur chaque jeu permuté
+sub_equal,  subspace statistic: equal weights of the components (T_k),  statistique du sous-espace : poids égaux des composantes (T_k)
+sub_inertia,  subspace statistic: components weighted by the inertia of the other blocks (T_k^w),  statistique du sous-espace : composantes pondérées par l'inertie des autres blocs (T_k^w)
+weighting_line,  weighting of the blocks: %s,  pondération des blocs : %s
+subspace_line,Blocks linked to the subspace: %s%s,Blocs liés au sous-espace : %s%s
+pval_head_fixed,"p-values (%), components of the other blocks (descriptive):","p-values (%), composantes des autres blocs (descriptif) :"
+struct_head_fixed,"Linked blocks for each component of the other blocks (Holm, descriptive):","Blocs liés à chaque composante des autres blocs (Holm, descriptif) :"
+linked_line,Linked component (min_k p <= alpha/K):            ,Composante liée (min_k p <= alpha/K) :              
+comp,Comp,Comp
+title_path,Permutation tests along the number of dimensions,Tests par permutation selon le nombre de dimensions
+chosen_R,\nChosen number of dimensions (all dimensions retained): R = %d\n,\nNombre de dimensions retenu (toutes les dimensions retenues) : R = %d\n
+all,all blocks,tous les blocs
+several,several blocks,plusieurs blocs
+one,one block,un seul bloc
+none,no block,aucun bloc
+yes,yes,oui
+no,no,non
+dim,Dim,Dim
+dimension,Dimension,Dimension
+ref_comp,Reference component,Composante de référence
+pvs,Pseudo-singular value,Pseudo-valeur singulière
+salience,Salience,Salience
+block,Block,Bloc
+blocks,Blocks,Blocs
+variable,Variable,Variable
+wavelength,Wavelength / wavenumber,Longueur d'onde / nombre d'onde
+loading,Axis (loading),Axe (loading)
+n_dims,Number of dimensions r,Nombre de dimensions r
+dim_h,Dimension h,Dimension h
+method,Method,Méthode
+carrier,linked,lié
+pvalues_title,p-values (%) by block and dimension,p-values (%) par bloc et par dimension
+sal_title,Saliences d_kh^2 by block and dimension,Saliences d_kh^2 par bloc et par dimension
+d_title,Pseudo-singular values d_kh by block and dimension,Pseudo-valeurs singulières d_kh par bloc et par dimension
+delta_title,delta_kh = d_kh / sigma_1(X_k) by block and dimension,delta_kh = d_kh / sigma_1(X_k) par bloc et par dimension
+scores_title,Individuals on the reference components,Individus sur les composantes de référence
+traj_title,Trajectory of each block as q varies,Trajectoire de chaque bloc selon q
+compare_title,"Pseudo-singular values by method, dimension %d","Pseudo-valeurs singulières par méthode, dimension %d"
+path_title,min_k p_kh (%) by model and dimension; retained dimensions in bold,min_k p_kh (%) par modèle et par dimension ; dimensions retenues en gras
+rose_bottom,inner: (%s - mean)^2  |  middle: %s  |  ring: mean^2 / (mean^2 + V),intérieur : (%s - moyenne)^2  |  milieu : %s  |  anneau : moyenne^2 / (moyenne^2 + V)
+rose_mean,mean,moyenne
+fit,Fit,Ajustement
+experimental_title,EXPERIMENTAL: choice of R by successive tests,EXPÉRIMENTAL : choix de R par tests successifs
+experimental_note,"  This function is experimental. The choice of R is not part of the published articles; the\n  models are re-estimated for each r and are not nested for simultaneous methods, and the\n  p-values of the chosen model are optimistic. Report the whole profile, not only R.\n","  Cette fonction est expérimentale. Le choix de R ne fait pas partie des articles publiés ; les\n  modèles sont réestimés pour chaque r et ne sont pas emboîtés pour les méthodes simultanées, et les\n  p-values du modèle retenu sont optimistes. Présenter tout le profil, pas seulement R.\n"
+experimental_warning,"cf_test_path() is experimental: the choice of R is not part of the published articles, and the p-values of the chosen model are optimistic.","cf_test_path() est expérimentale : le choix de R ne fait pas partie des articles publiés, et les p-values du modèle retenu sont optimistes."
+pvalue_perm,  p-values: permutation (B = %d),  p-values : permutation (B = %d)
+pvalue_gamma,"  p-values: gamma approximation (exact permutation mean and variance), no permutation; slightly liberal","  p-values : approximation gamma (moyenne et variance exactes de permutation), sans permutation ; légèrement libérale"
+pvalue_hybrid,"  p-values: gamma approximation, permutation (B = %d) when p is between alpha/(%g K) and %g alpha (%d of %d p-values)","  p-values : approximation gamma, permutation (B = %d) quand p est entre alpha/(%g K) et %g alpha (%d p-values sur %d)"
+groups_line,  exchangeability groups: %d groups (%s),  groupes d'échangeabilité : %d groupes (%s)
+compare_head,"Comparison tests (same permutations), p-values (%):","Tests de comparaison (mêmes permutations), p-values (%) :"
+compare_note,  full RV: block against the other blocks; PROTEST: first R principal components. Not part of the LOBO test.,  RV complet : bloc contre les autres blocs ; PROTEST : R premières composantes principales. Hors du test LOBO.
+null_title,Permutation distribution of the subspace statistic; line: observed value,Distribution de permutation de la statistique du sous-espace ; trait : valeur observée
+statistic,Statistic,Statistique
+frequency,Frequency,Effectif
+multistart_title,Multiple starts: criterion reached by each start,Départs multiples : critère atteint par chaque départ
+multistart_head,Share of starts reaching the best criterion (%%): %.0f; distinct optima: %d; deterministic start reaches the best: %s\n,Part des départs atteignant le meilleur critère (%%) : %.0f ; optima distincts : %d ; le départ déterministe atteint le meilleur : %s\n
+start,Start,Départ
+criterion_lab,Criterion,Critère
+angles_head,"Angles (degrees) between the components of two fits, after matching:","Angles (degrés) entre les composantes de deux ajustements, après appariement :"
+subspace_angle,Largest principal angle between the subspaces (degrees): %.1f\n,Plus grand angle principal entre les sous-espaces (degrés) : %.1f\n
+compare_table_head,Pseudo-singular values by method (dimensions matched to the first fit):,Pseudo-valeurs singulières par méthode (dimensions appariées au premier ajustement) :
+subspace,Subspace,Sous-espace
+help_missing,No help page for '%s'. Topics: %s,Pas de page d'aide pour « %s ». Sujets : %s

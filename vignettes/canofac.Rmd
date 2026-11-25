@@ -1,0 +1,125 @@
+---
+title: "Introduction to canofac"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to canofac}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+has_ade4 <- requireNamespace("ade4", quietly = TRUE)
+```
+
+```{r}
+library(canofac)
+```
+
+## Data and preprocessing
+
+The Friday (1987) data (package **ade4**) describe 16 ponds by the abundance
+of 91 species in 10 blocks (taxonomic groups). Each block is centred by column and
+brought to unit total inertia, the default normalisation of the package.
+
+```{r, eval = has_ade4}
+blocks <- cf_friday()
+sapply(blocks, ncol)
+```
+
+## The q-family
+
+`q = 2` with unconstrained axes is CPCA; `q = 4` with simultaneous extraction
+is INDORT, and with sequential extraction ACCPS (CCSWA, ComDim).
+
+```{r, eval = has_ade4}
+fit2 <- canofac(blocks, R = 2, q = 2)
+fit4 <- canofac(blocks, R = 2, q = 4)
+fit4
+```
+
+The saliences `fit4$saliences` are the shares of the inertia of each block
+carried by each reference component.
+
+## Trajectories
+
+```{r, eval = has_ade4, fig.width = 6, fig.height = 6}
+tr <- cf_trajectories(blocks, R = 2, qgrid = c(1, 1.5, 1.9, 2, 2.1, 3, 4, 6, 8, 10))
+plot(tr)
+```
+
+## Plots of a fit
+
+```{r, eval = has_ade4, fig.width = 6, fig.height = 5}
+plot(fit4, labels = TRUE)          # individuals on the reference components
+plot(fit4, type = "saliences")     # saliences per block and dimension
+```
+
+## Permutation test
+
+```{r, eval = has_ade4}
+test <- cf_test(blocks, R = 2, q = 2, B = 199, seed = 1)
+test
+plot(test)
+```
+
+For each block, the test estimates the reference components of the other
+blocks, `U^(-k)`, and compares the link between the block and these components
+with the links obtained after permuting the rows of the block: the LOBO
+(leave-one-block-out) test. **All the blocks** are linked to the subspace when its p-value is
+below `alpha` for every block. Otherwise, the blocks linked to it are those
+whose Holm-adjusted p-value is below `alpha`: several, one or none. The
+p-values of each component of the other blocks are descriptive; a component
+is linked when at least one block is linked to it after Holm adjustment.
+Being linked is not a label: a component may mix directions that the blocks
+carry differently, and a block may be linked to it through a small share
+only. Labeling parts of the retained space as common, shared, private or
+residual is done by CoPRes (<https://github.com/hanafisoft/CoPRes>). The
+previous statistic, which re-estimates the whole model on each permuted data
+set, is available with `statistic = "refit"`; it loses its power for a second
+link and is used only as a global test.
+
+Further options of `cf_test()`: `pvalue = "hybrid"` (gamma approximation with
+the exact permutation moments, permutation only near the thresholds),
+`scheme = "groups"` with `groups` (replicates), `compare = TRUE` (full RV test
+and PROTEST, as comparisons), and `plot(test, type = "null")` (permutation
+distributions). With the same `seed`, the Python version of canofac gives the
+same p-values.
+
+## Choice of the number of dimensions (experimental)
+
+`cf_test_path()` is **experimental**: the choice of R is not part of the
+published articles, and the p-values of the chosen model are optimistic. A
+warning is issued at each call.
+
+```{r, eval = FALSE}
+pth <- cf_test_path(blocks, q = 2, B = 199, seed = 1)  # models r = 1, ..., K + 2
+pth
+plot(pth)
+```
+
+For q > 2 the criterion can be multimodal: `canofac()` and `cf_test()` use 10
+starts by default (argument `nstart`).
+
+## Graphics module and language of the results
+
+The functions `cf_plot_scores()`, `cf_plot_saliences()`,
+`cf_plot_trajectories()`, `cf_plot_test()` and `cf_plot_compare()` draw the
+main results; the `plot()` methods call them. The labels of the printed and
+plotted results are in English by default; `cf_lang("fr")` switches them to
+French. The values stored in the objects (for example `test$link`) do not
+depend on the language.
+
+```{r, eval = has_ade4, fig.width = 6, fig.height = 5}
+cf_plot_saliences(fit4)
+fits <- list("q = 1" = canofac(blocks, R = 2, q = 1), CPCA = fit2, INDORT = fit4)
+cf_plot_compare(fits, dim = 1)
+old <- cf_lang("fr")
+cf_plot_test(test)
+cf_lang(old)
+```
+
+Help in French: `cf_help("cf_test", "fr")`; a French version of this vignette
+is available (`vignette("canofac-fr", package = "canofac")`). A complete
+commented script, in French, runs the whole analysis step by step:
+`system.file("scripts", "canofac_step_by_step.R", package = "canofac")`.

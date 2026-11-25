@@ -4,17 +4,33 @@
 \alias{cf_simulate}
 \title{Simulated multiblock data of the article on the LOBO test}
 \usage{
-cf_simulate(scenario = c("SA", "S0", "SB", "SC", "SD", "SE"), n = 20, p = 10,
-  K = 4, theta = 1.6, theta2 = 1.5, seed = 1, preprocess = TRUE)
+cf_simulate(
+  scenario = c("SA", "S0", "SB", "SC", "SD", "SE"),
+  n = 20,
+  p = 10,
+  K = 4,
+  theta = 1.6,
+  theta2 = 1.5,
+  seed = 1,
+  preprocess = TRUE
+)
 }
 \arguments{
-\item{scenario}{one of \code{"S0"}, \code{"SA"}, \code{"SB"}, \code{"SC"}, \code{"SD"}, \code{"SE"}.}
+\item{scenario}{one of \code{"S0"}, \code{"SA"}, \code{"SB"}, \code{"SC"},
+\code{"SD"}, \code{"SE"}.}
+
 \item{n}{number of individuals.}
+
 \item{p}{number of variables per block.}
+
 \item{K}{number of blocks.}
+
 \item{theta}{intensity of the first direction.}
+
 \item{theta2}{intensity of the second direction (SD, SE).}
+
 \item{seed}{seed of the common generator.}
+
 \item{preprocess}{logical: centre and bring each block to unit total inertia.}
 }
 \value{

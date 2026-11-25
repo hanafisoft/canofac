@@ -8,7 +8,9 @@ cf_permutations(B, n, seed = 1)
 }
 \arguments{
 \item{B}{number of permutations.}
+
 \item{n}{size of each permutation.}
+
 \item{seed}{integer seed.}
 }
 \value{
@@ -28,9 +30,9 @@ that the result does not depend on how the computation is vectorised. The
 global random number generator of R (\code{set.seed}) is neither used nor
 modified, except to draw a seed when none is given.
 }
-\seealso{
-\code{\link{cf_test}}; French help: \code{cf_help("generateur", "fr")}.
-}
 \examples{
 cf_permutations(2, 5, seed = 3)
+}
+\seealso{
+\code{\link{cf_test}}; French help: \code{cf_help("generateur", "fr")}.
 }

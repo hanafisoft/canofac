@@ -7,7 +7,9 @@
 cf_help(topic = "canofac-package", lang = NULL)
 }
 \arguments{
-\item{topic}{function name (\code{"cf_test"}, ...), \code{"canofac-package"} for the overview, or \code{"topics"} to list the French topics.}
+\item{topic}{function name (\code{"cf_test"}, ...), \code{"canofac-package"}
+for the overview, or \code{"topics"} to list the French topics.}
+
 \item{lang}{\code{"en"} or \code{"fr"}.}
 }
 \value{

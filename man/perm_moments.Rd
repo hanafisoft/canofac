@@ -10,7 +10,9 @@ perm_moments(A, B)
 gamma_pvalue(obs, A, B)
 }
 \arguments{
-\item{A,B}{doubly centred symmetric matrices (for example \eqn{W_k} and \eqn{U U'}).}
+\item{A, B}{doubly centred symmetric matrices (for example \eqn{W_k} and
+\eqn{U U'}).}
+
 \item{obs}{observed value of \eqn{tr(A B)}.}
 }
 \value{
@@ -35,6 +37,11 @@ unit inertia, the chance level of a salience.
 gamma law with these two moments, used by \code{cf_test(pvalue = "gamma")}
 and \code{"hybrid"}.
 }
+\examples{
+X <- scale(matrix(rnorm(60), 20), scale = FALSE)
+u <- svd(scale(matrix(rnorm(80), 20), scale = FALSE))$u[, 1:2]
+perm_moments(tcrossprod(X), tcrossprod(u))
+}
 \references{
 Kazi-Aoual F., Hitier S., Sabatier R., Lebreton J.-D. (1995).
   Refined approximations to permutation tests for multivariate inference.
@@ -45,9 +52,4 @@ Kazi-Aoual F., Hitier S., Sabatier R., Lebreton J.-D. (1995).
 }
 \seealso{
 \code{\link{cf_test}}; French help: \code{cf_help("approximation", "fr")}.
-}
-\examples{
-X <- scale(matrix(rnorm(60), 20), scale = FALSE)
-u <- svd(scale(matrix(rnorm(80), 20), scale = FALSE))$u[, 1:2]
-perm_moments(tcrossprod(X), tcrossprod(u))
 }

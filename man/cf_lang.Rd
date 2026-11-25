@@ -7,7 +7,8 @@
 cf_lang(lang)
 }
 \arguments{
-\item{lang}{\code{"en"} (English, default) or \code{"fr"} (French). If missing, the current language is returned.}
+\item{lang}{\code{"en"} (English, default) or \code{"fr"} (French). If
+missing, the current language is returned.}
 }
 \value{
 The current language, invisibly when it is set.

@@ -8,9 +8,14 @@ cf_compare(fits, names = NULL, digits = 2, match = TRUE)
 }
 \arguments{
 \item{fits}{list of \code{canofac} objects.}
+
 \item{names}{optional names of the fits.}
+
 \item{digits}{number of digits printed.}
-\item{match}{logical: match the dimensions to those of the first fit (default); with \code{FALSE}, each fit keeps its own order (decreasing contribution to its criterion), as in the tables of the article.}
+
+\item{match}{logical: match the dimensions to those of the first fit
+(default); with \code{FALSE}, each fit keeps its own order (decreasing
+contribution to its criterion), as in the tables of the article.}
 }
 \value{
 A matrix (printed): one row per block, one column per fit and

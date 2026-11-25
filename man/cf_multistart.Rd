@@ -4,19 +4,37 @@
 \alias{cf_multistart}
 \title{Multimodality of the criterion: criterion reached from random starts}
 \usage{
-cf_multistart(blocks, R = 2, q = 4, nstart = 100,
-  extraction = c("simultaneous", "sequential"), seed = 2026, rtol = 1e-5,
-  tol = 1e-10, maxit = 5000)
+cf_multistart(
+  blocks,
+  R = 2,
+  q = 4,
+  nstart = 100,
+  extraction = c("simultaneous", "sequential"),
+  seed = 2026,
+  rtol = 1e-05,
+  tol = 1e-10,
+  maxit = 5000
+)
 }
 \arguments{
-\item{nstart}{number of random starts.}
-\item{seed}{seed of the common generator.}
-\item{rtol}{relative tolerance to identify the best criterion and distinct optima.}
-\item{blocks}{list of numeric matrices with the same number of rows, already preprocessed.}
+\item{blocks}{list of numeric matrices with the same number of rows,
+already preprocessed.}
+
 \item{R}{number of dimensions.}
+
 \item{q}{power applied to the pseudo-singular values, \code{q >= 1}.}
+
+\item{nstart}{number of random starts.}
+
 \item{extraction}{\code{"simultaneous"} or \code{"sequential"} (deflation).}
+
+\item{seed}{seed of the common generator.}
+
+\item{rtol}{relative tolerance to identify the best criterion and distinct
+optima.}
+
 \item{tol}{relative tolerance on the criterion.}
+
 \item{maxit}{maximum number of iterations.}
 }
 \value{

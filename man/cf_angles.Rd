@@ -7,7 +7,7 @@
 cf_angles(fit1, fit2)
 }
 \arguments{
-\item{fit1,fit2}{\code{canofac} objects with the same number of rows.}
+\item{fit1, fit2}{\code{canofac} objects with the same number of rows.}
 }
 \value{
 A list (printed): \code{components} (angles) and \code{subspace}.

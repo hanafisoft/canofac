@@ -11,7 +11,10 @@ cf_write_blocks(blocks, file, extra = NULL)
 }
 \arguments{
 \item{file}{CSV file.}
-\item{blocks}{for \code{cf_read_blocks}, blocks to keep (default all, in file order); for \code{cf_write_blocks}, a named list of matrices or data frames.}
+
+\item{blocks}{for \code{cf_read_blocks}, blocks to keep (default all, in file
+order); for \code{cf_write_blocks}, a named list of matrices or data frames.}
+
 \item{extra}{optional data frame of extra columns to write.}
 }
 \value{

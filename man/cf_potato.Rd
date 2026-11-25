@@ -7,8 +7,13 @@
 cf_potato(file = NULL, blocks = "BB", preprocess = TRUE)
 }
 \arguments{
-\item{file}{optional CSV file in the exchange format of \code{\link{cf_read_blocks}}; if \code{NULL}, the data are read from the package multiblock.}
-\item{blocks}{blocks to keep: a character vector of block names, or \code{"BB"} or \code{"A"} for the predefined sets.}
+\item{file}{optional CSV file in the exchange format of
+\code{\link{cf_read_blocks}}; if \code{NULL}, the data are read from the
+package multiblock.}
+
+\item{blocks}{blocks to keep: a character vector of block names, or
+\code{"BB"} or \code{"A"} for the predefined sets.}
+
 \item{preprocess}{logical: centre and bring each block to unit total inertia.}
 }
 \value{
@@ -25,6 +30,14 @@ multiblock version, each NIR spectrum is SNV-transformed and the variables
 of Chemical and Compression are already scaled; preprocessing: centring and
 unit total inertia.
 }
+\examples{
+\dontrun{
+blocks <- cf_potato()            # article BB
+cf_test(blocks, R = 2, q = 2, B = 999, seed = 1)
+raw <- cf_potato(blocks = "A")   # article A
+canofac(raw, R = 2, q = 4)
+}
+}
 \references{
 Thygesen L. G., Thybo A. K., Engelsen S. B. (2001). Prediction
   of sensory texture quality of boiled potatoes from low-field 1H NMR of raw
@@ -34,12 +47,4 @@ Thygesen L. G., Thybo A. K., Engelsen S. B. (2001). Prediction
   Liland K. H., Naes T., Indahl U. G. (2016). ROSA - a fast extension of
   partial least squares regression for multiblock data analysis. Journal of
   Chemometrics, 30, 651-662.
-}
-\examples{
-\dontrun{
-blocks <- cf_potato()            # article BB
-cf_test(blocks, R = 2, q = 2, B = 999, seed = 1)
-raw <- cf_potato(blocks = "A")   # article A
-canofac(raw, R = 2, q = 4)
-}
 }

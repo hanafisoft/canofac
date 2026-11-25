@@ -4,20 +4,53 @@
 \alias{canofac}
 \title{Canonical factorisation of multiblock data in the q-family}
 \usage{
-canofac(blocks, R = 2, q = 2, axes = c("free", "orthonormal"),
-  extraction = c("simultaneous", "sequential"), tol = 1e-10, maxit = 5000,
-  nstart = NULL, weighting = c("none", "mfa", "statis"))
+canofac(
+  blocks,
+  R = 2,
+  q = 2,
+  axes = c("free", "orthonormal"),
+  extraction = c("simultaneous", "sequential"),
+  tol = 1e-10,
+  maxit = 5000,
+  nstart = NULL,
+  weighting = c("none", "mfa", "statis")
+)
 }
 \arguments{
-\item{blocks}{list of numeric matrices with the same number of rows, already preprocessed.}
+\item{blocks}{list of numeric matrices with the same number of rows,
+already preprocessed.}
+
 \item{R}{number of dimensions.}
+
 \item{q}{power applied to the pseudo-singular values, \code{q >= 1}.}
-\item{axes}{\code{"free"} (unconstrained axes of unit norm) or \code{"orthonormal"} (\eqn{V_k'V_k = I}).}
+
+\item{axes}{\code{"free"} (unconstrained axes of unit norm) or
+\code{"orthonormal"} (\eqn{V_k'V_k = I}).}
+
 \item{extraction}{\code{"simultaneous"} or \code{"sequential"} (deflation).}
+
 \item{tol}{relative tolerance on the criterion.}
+
 \item{maxit}{maximum number of iterations.}
-\item{nstart}{number of starts for unconstrained axes: the deterministic CPCA start plus \code{nstart - 1} random starts, the best solution being kept. For \code{q > 2} the criterion can be multimodal (several local maxima, one per block able to dominate a dimension), hence the default \code{NULL}: 10 starts if \code{q > 2} and \code{axes = "free"}, 1 otherwise. The random starts are drawn by the common generator of canofac with the seed 12345 (\code{\link{cf_permutations}}), so the procedure is deterministic, gives the same starts as the Python version, and leaves R's global random number generator untouched. Ignored for orthonormal axes.}
-\item{weighting}{weighting of the blocks before the fit: \code{"none"} (default, the blocks as given), \code{"mfa"} (each block divided by its first singular value, as in MFA) or \code{"statis"} (each block brought to \eqn{\|X_kX_k'\|_F = 1}, then its scalar product matrix weighted by the first eigenvector \eqn{\alpha} of the matrix \eqn{C_{kl} = tr(W_kW_l)}, as in STATIS). STATIS and MFA are obtained with \code{q = 2}, \code{axes = "free"} and \code{extraction = "simultaneous"}.}
+
+\item{nstart}{number of starts for unconstrained axes: the deterministic
+CPCA start plus \code{nstart - 1} random starts, the best solution being
+kept. For \code{q > 2} the criterion can be multimodal (several local
+maxima, one per block able to dominate a dimension), hence the default
+\code{NULL}: 10 starts if \code{q > 2} and \code{axes = "free"}, 1
+otherwise. The random starts are drawn by the common generator of
+canofac with the seed 12345 (\code{\link{cf_permutations}}), so the
+procedure is deterministic, gives the same starts as the Python version,
+and leaves R's global random number generator untouched. Ignored for
+orthonormal axes.}
+
+\item{weighting}{weighting of the blocks before the fit: \code{"none"}
+(default, the blocks as given), \code{"mfa"} (each block divided by its
+first singular value, as in MFA) or \code{"statis"} (each block brought to
+\eqn{\|X_kX_k'\|_F = 1}, then its scalar product matrix weighted by the
+first eigenvector \eqn{\alpha} of the matrix \eqn{C_{kl} = tr(W_kW_l)}, as
+in STATIS). STATIS and MFA are obtained with \code{q = 2},
+\code{axes = "free"} and \code{extraction = "simultaneous"}.}
 }
 \value{
 An object of class \code{"canofac"}: a list with \code{U}
@@ -46,11 +79,6 @@ The blocks are used as given: preprocess them first with
 \code{\link{cf_preprocess}} (by default, column centring and unit total
 inertia).
 }
-\references{
-Bougeard S., Peltier C., Jaillais B., Boulet J.-C., Hanafi M.
-  (2024). Benchmarking multiblock methods with canonical factorization.
-  Chemometrics and Intelligent Laboratory Systems, 254, 105240.
-}
 \examples{
 set.seed(1)
 u <- scale(rnorm(20))[, 1]
@@ -63,4 +91,9 @@ plot(fit)
 plot(fit, type = "saliences")
 statis <- canofac(blocks, R = 2, q = 2, weighting = "statis")
 statis$block_weights
+}
+\references{
+Bougeard S., Peltier C., Jaillais B., Boulet J.-C., Hanafi M.
+  (2024). Benchmarking multiblock methods with canonical factorization.
+  Chemometrics and Intelligent Laboratory Systems, 254, 105240.
 }

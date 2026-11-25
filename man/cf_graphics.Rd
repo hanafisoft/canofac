@@ -9,63 +9,105 @@
 \alias{cf_plot_compare}
 \title{Graphics module of canofac}
 \usage{
-cf_plot_scores(x, dims = c(1, 2), group = NULL, ellipse = !is.null(group),
-  level = 0.95, labels = FALSE, main = NULL, ...)
+cf_plot_scores(
+  x,
+  dims = c(1, 2),
+  group = NULL,
+  ellipse = !is.null(group),
+  level = 0.95,
+  labels = FALSE,
+  main = NULL,
+  ...
+)
 
-cf_plot_saliences(x, stat = c("saliences", "d", "delta"), digits = 2,
-  main = NULL)
+cf_plot_saliences(
+  x,
+  stat = c("saliences", "d", "delta"),
+  digits = 2,
+  main = NULL
+)
 
-cf_plot_trajectories(x, dims = c(1, 2), labels = TRUE, mark = c(2, 4),
-  main = NULL, legend = TRUE, ...)
+cf_plot_trajectories(
+  x,
+  dims = c(1, 2),
+  labels = TRUE,
+  mark = c(2, 4),
+  main = NULL,
+  legend = TRUE,
+  ...
+)
 
 cf_plot_test(x, digits = 1, subspace = TRUE, main = NULL)
 
 cf_plot_compare(fits, dim = 1, main = NULL, ...)
 }
 \arguments{
-\item{x}{a \code{canofac} object (\code{cf_plot_scores}, \code{cf_plot_saliences}), a \code{cf_trajectories} object (\code{cf_plot_trajectories}) or a \code{cf_test} object (\code{cf_plot_test}).}
+\item{x}{a \code{canofac} object (\code{cf_plot_scores},
+\code{cf_plot_saliences}), a \code{cf_trajectories} object
+(\code{cf_plot_trajectories}) or a \code{cf_test} object
+(\code{cf_plot_test}).}
 
 \item{dims}{the two dimensions to plot.}
 
 \item{group}{optional factor used to colour the individuals.}
 
-\item{ellipse}{logical, draw a normal ellipse for each group (at least three individuals).}
+\item{ellipse}{logical, draw a normal ellipse for each group (at least
+three individuals).}
 
 \item{level}{coverage of the ellipses.}
 
-\item{labels}{logical or character vector: label the individuals (\code{cf_plot_scores}) or the blocks (\code{cf_plot_trajectories}).}
+\item{labels}{logical or character vector: label the individuals
+(\code{cf_plot_scores}) or the blocks (\code{cf_plot_trajectories}).}
 
-\item{main}{optional title; a default title in the current language is used when \code{NULL}.}
+\item{main}{optional title; a default title in the current language is
+used when \code{NULL}.}
 
 \item{...}{further graphical parameters.}
 
-\item{stat}{\code{"saliences"} (\eqn{d_{kh}^2}), \code{"d"} or \code{"delta"}.}
+\item{stat}{\code{"saliences"} (\eqn{d_{kh}^2}), \code{"d"} or
+\code{"delta"}.}
 
 \item{digits}{number of decimals of the printed values.}
 
-\item{mark}{values of \eqn{q} marked on the trajectories, in addition to the smallest and the largest value of the grid.}
+\item{mark}{values of \eqn{q} marked on the trajectories, in addition to the
+smallest and the largest value of the grid.}
 
 \item{legend}{logical, add a legend of the markers.}
 
 \item{subspace}{logical, add a column with the p-values of the subspace test.}
 
-\item{fits}{a named list of \code{canofac} objects fitted on the same blocks (\code{cf_plot_compare}).}
+\item{fits}{a named list of \code{canofac} objects fitted on the same
+blocks (\code{cf_plot_compare}).}
 
-\item{dim}{dimension shown (\code{cf_plot_compare}), in the numbering of the first fit.}
+\item{dim}{dimension shown (\code{cf_plot_compare}), in the numbering of
+the first fit.}
 }
 \value{
 \code{x}, invisibly.
 }
 \description{
-Base-graphics functions for the results of the package. All labels follow the language set by \code{\link{cf_lang}} (English or French).
+Base-graphics functions for the results of the package. All labels follow
+the language set by \code{\link{cf_lang}} (English or French).
 \itemize{
-  \item \code{cf_plot_scores}: individuals on two reference components, coloured by group, with a normal ellipse per group;
-  \item \code{cf_plot_saliences}: table of the saliences \eqn{d_{kh}^2} (or of \eqn{d_{kh}}, or of \eqn{\delta_{kh}}), blocks in rows and dimensions in columns, drawn as a heat map with the values;
-  \item \code{cf_plot_trajectories}: trajectory of each block in the \eqn{(\delta_{k1}, \delta_{k2})} plane as \eqn{q} varies, with markers at the values of \eqn{q} of the classical methods (\eqn{q = 1}, \eqn{q = 2}, \eqn{q = 4}) and at the largest \eqn{q};
-  \item \code{cf_plot_test}: p-values of \code{\link{cf_test}} (blocks in rows, dimensions in columns, plus the subspace test), linked blocks in bold and the outcome (all, several, one or no block linked) above each column, that of the subspace in capitals;
-  \item \code{cf_plot_compare}: pseudo-singular values of several fits on the same blocks (for example \eqn{q = 1, 2, 4}), one group of bars per block, the dimensions of each fit being matched to those of the first.
+  \item \code{cf_plot_scores}: individuals on two reference components,
+    coloured by group, with a normal ellipse per group;
+  \item \code{cf_plot_saliences}: table of the saliences \eqn{d_{kh}^2}
+    (or of \eqn{d_{kh}}, or of \eqn{\delta_{kh}}), blocks in rows and
+    dimensions in columns, drawn as a heat map with the values;
+  \item \code{cf_plot_trajectories}: trajectory of each block in the
+    \eqn{(\delta_{k1}, \delta_{k2})} plane as \eqn{q} varies, with markers
+    at the values of \eqn{q} of the classical methods (\eqn{q = 1},
+    \eqn{q = 2}, \eqn{q = 4}) and at the largest \eqn{q};
+  \item \code{cf_plot_test}: p-values of \code{\link{cf_test}} (blocks in
+    rows, components or dimensions in columns, plus the subspace test),
+    linked blocks in bold and the outcome (all, several, one or no block
+    linked) above each column, that of the subspace in capitals;
+  \item \code{cf_plot_compare}: pseudo-singular values of several fits on
+    the same blocks (for example \eqn{q = 1, 2, 4}), one group of bars per
+    block, the dimensions of each fit being matched to those of the first.
 }
-The \code{plot} methods of \code{canofac}, \code{cf_trajectories} and \code{cf_test} objects call these functions.
+The \code{plot} methods of \code{canofac}, \code{cf_trajectories} and
+\code{cf_test} objects call these functions.
 }
 \examples{
 set.seed(1)

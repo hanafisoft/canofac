@@ -8,7 +8,9 @@ cf_plot_null(x, breaks = 30, main = NULL)
 }
 \arguments{
 \item{x}{a \code{cf_test} object (not computed with \code{pvalue = "gamma"}).}
+
 \item{breaks}{number of bins.}
+
 \item{main}{optional title.}
 }
 \value{

@@ -4,35 +4,94 @@
 \alias{cf_test}
 \title{Permutation test of the links between each block and the reference components}
 \usage{
-cf_test(blocks, R = 2, q = 2, axes = c("free", "orthonormal"),
-  extraction = c("simultaneous", "sequential"), scheme = c("rows", "groups",
-  "within", "variables", "components"), groups = NULL, B = 999, alpha = 0.05,
-  statistic = c("lobo", "refit", "fixed"), matching = TRUE, seed = NULL,
-  tol = 1e-10, maxit = 5000, nstart = NULL, subspace = c("inertia", "equal"),
-  weighting = c("none", "mfa", "statis"), pvalue = c("permutation", "gamma",
-  "hybrid"), hybrid_c = 3, compare = FALSE)
+cf_test(
+  blocks,
+  R = 2,
+  q = 2,
+  axes = c("free", "orthonormal"),
+  extraction = c("simultaneous", "sequential"),
+  scheme = c("rows", "groups", "within", "variables", "components"),
+  groups = NULL,
+  B = 999,
+  alpha = 0.05,
+  statistic = c("lobo", "refit", "fixed"),
+  matching = TRUE,
+  seed = NULL,
+  tol = 1e-10,
+  maxit = 5000,
+  nstart = NULL,
+  subspace = c("inertia", "equal"),
+  weighting = c("none", "mfa", "statis"),
+  pvalue = c("permutation", "gamma", "hybrid"),
+  hybrid_c = 3,
+  compare = FALSE
+)
 }
 \arguments{
-\item{scheme}{\code{"rows"} (permute the rows of the tested block), \code{"groups"} (permute whole groups of rows, of equal sizes), \code{"within"} (permute the rows within each group), \code{"variables"} (permute each variable of the tested block independently) or \code{"components"} (permute the scores of each principal component of the tested block independently).}
-\item{groups}{group of each row, for \code{scheme = "groups"} or \code{"within"}.}
-\item{B}{number of permutations.}
-\item{alpha}{level.}
-\item{statistic}{\code{"lobo"} (LOBO statistic, leave-one-block-out, default; \code{"fixed"} is an alias) or \code{"refit"} (re-estimation statistic).}
-\item{matching}{logical, for \code{statistic = "refit"}: match the dimensions to the solution on the other blocks.}
-\item{seed}{seed of the common generator (same permutations in R and Python); if \code{NULL}, a seed is drawn by R's generator and kept in \code{settings$seed}.}
-\item{subspace}{subspace statistic of the LOBO test: \code{"inertia"} (\eqn{T_k^w}, restricted RV, weights by the inertia of the other blocks, default) or \code{"equal"} (\eqn{T_k}, equal weights).}
-\item{pvalue}{\code{"permutation"} (default), \code{"gamma"} or \code{"hybrid"}.}
-\item{hybrid_c}{width of the zone of the hybrid mode (3).}
-\item{compare}{logical: also compute the full RV test and PROTEST.}
-\item{weighting}{weighting of the blocks, \code{"none"}, \code{"mfa"} or \code{"statis"} (see \code{\link{canofac}}).}
-\item{blocks}{list of numeric matrices with the same number of rows, already preprocessed.}
+\item{blocks}{list of numeric matrices with the same number of rows,
+already preprocessed.}
+
 \item{R}{number of dimensions.}
+
 \item{q}{power applied to the pseudo-singular values, \code{q >= 1}.}
-\item{axes}{\code{"free"} (unconstrained axes of unit norm) or \code{"orthonormal"} (\eqn{V_k'V_k = I}).}
+
+\item{axes}{\code{"free"} (unconstrained axes of unit norm) or
+\code{"orthonormal"} (\eqn{V_k'V_k = I}).}
+
 \item{extraction}{\code{"simultaneous"} or \code{"sequential"} (deflation).}
+
+\item{scheme}{\code{"rows"} (permute the rows of the tested block),
+\code{"groups"} (permute whole groups of rows, of equal sizes),
+\code{"within"} (permute the rows within each group),
+\code{"variables"} (permute each variable of the tested block
+independently) or \code{"components"} (permute the scores of each
+principal component of the tested block independently).}
+
+\item{groups}{group of each row, for \code{scheme = "groups"} or
+\code{"within"}.}
+
+\item{B}{number of permutations.}
+
+\item{alpha}{level.}
+
+\item{statistic}{\code{"lobo"} (LOBO statistic, leave-one-block-out, default; \code{"fixed"} is an alias) or
+\code{"refit"} (re-estimation statistic).}
+
+\item{matching}{logical, for \code{statistic = "refit"}: match the
+dimensions to the solution on the other blocks.}
+
+\item{seed}{seed of the common generator (same permutations in R and
+Python); if \code{NULL}, a seed is drawn by R's generator and kept in
+\code{settings$seed}.}
+
 \item{tol}{relative tolerance on the criterion.}
+
 \item{maxit}{maximum number of iterations.}
-\item{nstart}{number of starts for unconstrained axes: the deterministic CPCA start plus \code{nstart - 1} random starts, the best solution being kept. For \code{q > 2} the criterion can be multimodal (several local maxima, one per block able to dominate a dimension), hence the default \code{NULL}: 10 starts if \code{q > 2} and \code{axes = "free"}, 1 otherwise. The random starts are drawn by the common generator of canofac with the seed 12345 (\code{\link{cf_permutations}}), so the procedure is deterministic, gives the same starts as the Python version, and leaves R's global random number generator untouched. Ignored for orthonormal axes.}
+
+\item{nstart}{number of starts for unconstrained axes: the deterministic
+CPCA start plus \code{nstart - 1} random starts, the best solution being
+kept. For \code{q > 2} the criterion can be multimodal (several local
+maxima, one per block able to dominate a dimension), hence the default
+\code{NULL}: 10 starts if \code{q > 2} and \code{axes = "free"}, 1
+otherwise. The random starts are drawn by the common generator of
+canofac with the seed 12345 (\code{\link{cf_permutations}}), so the
+procedure is deterministic, gives the same starts as the Python version,
+and leaves R's global random number generator untouched. Ignored for
+orthonormal axes.}
+
+\item{subspace}{subspace statistic of the LOBO test:
+\code{"inertia"} (\eqn{T_k^w}, restricted RV, weights by the inertia of
+the other blocks, default) or \code{"equal"} (\eqn{T_k}, equal weights).}
+
+\item{weighting}{weighting of the blocks, \code{"none"}, \code{"mfa"} or
+\code{"statis"} (see \code{\link{canofac}}).}
+
+\item{pvalue}{\code{"permutation"} (default), \code{"gamma"} or
+\code{"hybrid"}.}
+
+\item{hybrid_c}{width of the zone of the hybrid mode (3).}
+
+\item{compare}{logical: also compute the full RV test and PROTEST.}
 }
 \value{
 An object of class \code{"cf_test"}: \code{p} (\eqn{K \times R}

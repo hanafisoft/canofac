@@ -58,7 +58,7 @@ test_that("the LOBO statistic matches its definition", {
   bl <- .test_blocks()
   t2 <- cf_test(bl, R = 2, q = 2, B = 9, seed = 3)
   Uref <- canofac(bl[-1], R = 2, q = 2)$U
-  expect_equal(abs(crossprod(t2$refs[[1]], Uref)), diag(2), tolerance = 1e-6)
+  expect_equal(unname(abs(crossprod(t2$refs[[1]], Uref))), diag(2), tolerance = 1e-6)
 })
 
 test_that("the LOBO test detects a second link", {

@@ -2,6 +2,8 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/hanafisoft/canofac/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hanafisoft/canofac/actions/workflows/R-CMD-check.yaml)
+[![python](https://github.com/hanafisoft/canofac/actions/workflows/python.yaml/badge.svg)](https://github.com/hanafisoft/canofac/actions/workflows/python.yaml)
+[![DOI](https://zenodo.org/badge/1472117148.svg)](https://doi.org/10.5281/zenodo.24540840)
 <!-- badges: end -->
 
 `canofac` estimates exploratory multiblock methods written in the canonical
@@ -90,7 +92,9 @@ data.
 
 ## Citation
 
-`citation("canofac")`. The article presenting the methods is in preparation;
+Hanafi M. (2026). canofac: Canonical Factorisation for Multiblock Data (R and
+Python). Zenodo. <https://doi.org/10.5281/zenodo.24540840> — in R: `citation("canofac")`.
+The article presenting the methods is in preparation;
 please also cite Bougeard et al. (2024), *Chemometrics and Intelligent
 Laboratory Systems*, 254, 105240.
 

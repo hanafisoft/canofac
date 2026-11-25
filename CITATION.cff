@@ -6,6 +6,11 @@ version: 0.7.0
 date-released: 2026-11-25
 license: GPL-3.0-or-later
 repository-code: "https://github.com/hanafisoft/canofac"
+doi: 10.5281/zenodo.24540840
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24540840
+    description: "Zenodo archive of canofac (all versions)"
 authors:
   - family-names: Hanafi
     given-names: Mohamed

@@ -1,5 +1,7 @@
 # canofac (Python)
 
+[![DOI](https://zenodo.org/badge/1472117148.svg)](https://doi.org/10.5281/zenodo.24540840)
+
 Canonical factorisation for multiblock data — Python version of the R package
 [canofac](https://github.com/hanafisoft/canofac), with the same functions, arguments, results, labels
 (English or French) and random draws: with the same `seed`, the permutation test gives the same p-values in

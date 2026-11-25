@@ -5,9 +5,11 @@ bibentry(
   year = "2026",
   note = paste("R package version", meta$Version),
   url = "https://github.com/hanafisoft/canofac",
+  doi = "10.5281/zenodo.24540840",
   textVersion = paste0(
     "Hanafi M. (2026). canofac: Canonical Factorisation for Multiblock Data. ",
-    "R package version ", meta$Version, ". https://github.com/hanafisoft/canofac")
+    "R package version ", meta$Version, ". https://github.com/hanafisoft/canofac. ",
+    "doi:10.5281/zenodo.24540840")
 )
 
 bibentry(

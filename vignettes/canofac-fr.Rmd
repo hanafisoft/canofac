@@ -71,6 +71,12 @@ les blocs liés sont ceux dont la p-value ajustée par Holm est ≤ alpha.
 test <- cf_test(blocks, R = 2, q = 2, B = 199, seed = 1)
 test
 plot(test)
+```
+
+Distributions de permutation de la statistique du sous-espace, une par bloc (trait vertical : valeur
+observée) :
+
+```{r, eval = has_ade4, fig.width = 7, fig.height = 6}
 plot(test, type = "null")
 ```
 

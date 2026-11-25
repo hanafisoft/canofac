@@ -204,8 +204,12 @@ def plot_null(x, title=None, bins=30):
     if not x.null:
         raise ValueError("no permutation distribution stored (pvalue = 'gamma')")
     names = list(x.null)
-    fig, axs = plt.subplots(1, len(names), figsize=(3.2 * len(names), 2.8), squeeze=False)
-    for a, nm in zip(axs[0], names):
+    nc = min(4, len(names))  # grid of at most 4 columns, as in R
+    nr = -(-len(names) // nc)
+    fig, axs = plt.subplots(nr, nc, figsize=(3.2 * nc, 2.8 * nr), squeeze=False)
+    for a in axs.ravel()[len(names):]:
+        a.set_visible(False)
+    for a, nm in zip(axs.ravel(), names):
         d = x.null[nm]
         a.hist(d["permuted"], bins=bins, color="#9DB9E6", edgecolor="white")
         a.axvline(d["observed"], color="#B4491F", lw=2)

@@ -276,7 +276,10 @@ cf_plot_null <- function(x, breaks = 30, main = NULL) {
   if (!inherits(x, "cf_test")) stop("x must be a cf_test object")
   if (length(x$null) == 0) stop("no permutation distribution stored (pvalue = 'gamma')")
   nm <- names(x$null)
-  op <- graphics::par(mfrow = c(1, length(nm)), oma = c(0, 0, 2, 0), mar = c(4, 4, 3, 1))
+  # grid of at most 4 columns, so that 10 blocks (Friday) still fit in a standard figure
+  nc <- min(4, length(nm))
+  op <- graphics::par(mfrow = c(ceiling(length(nm) / nc), nc), oma = c(0, 0, 2, 0),
+                      mar = c(3.5, 3.5, 2, 0.5), mgp = c(2, 0.6, 0), cex = 0.8)
   on.exit(graphics::par(op))
   for (b in nm) {
     d <- x$null[[b]]
